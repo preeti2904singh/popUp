@@ -50,7 +50,46 @@
 										</h5>
 
 										<h5>
-											Edit | 
+											<span class="edit_modal" data-toggle="modal" data-target="#myModal">Edit</span> | 
+											X Remove | 
+											Save for later
+										</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<h5>S</h5>
+							</div>
+							<div class="col-md-1">
+								<select name="quantity" id="input" >
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+							</div>
+							<div class="col-md-1">
+								<h5><b>$11</b></h5>
+							</div>
+						</div>
+						<hr class="custome_hr">
+						<div class="row">
+							<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-2">
+										<img src="image/img_1.jpg" alt="">
+									</div>
+									<div class="col-md-10">
+										<h5>
+											<b>Cotton Tshirt</b> <br/>
+											Style#: ms13kt1906<br>
+											Color: Blue
+										</h5>
+
+										<h5>
+											<a class="edit_modal js-open-modal" href="#" data-modal-id="popup">Edit</a> | 
 											X Remove | 
 											Save for later
 										</h5>
@@ -78,12 +117,129 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header custome_header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title" id="myModalLabel"></h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="row">
+		        	<div class="col-md-6 text-center">
+		        		<h5>coton tshirt</h5>
+		        		<h2><b>$11</b></h2>
+		        		<h5>
+		        			bncvb
+		        		</h5>
+		        		<div class="select_wrap">
+		        			<select name="size" id="input" >
+								<option value="s">s</option>
+								<option value="m">m</option>
+								<option value="l">l</option>
+								<option value="xl">xl</option>
+								<option value="xxl">xxl</option>
+							</select>
+		        			<select name="quantity" id="input" >
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+							</select>
+		        		</div>
+		        		<button type="button" class="btn btn-primary custom_btn">ADD TO CART</button>
+		        		<p><u>see product details</u></p>
+		        	</div>
+		        	<div class="col-md-6">
+		        		<img src="image/img_1.jpg" alt="">
+		        	</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
+		<!-- Jquery Modal  -->
+		<div id="popup" class="modal-box">  
+		  <header>
+		    <a href="#" class="js-modal-close close">×</a>
+		    <h3 class="modal-title"></h3>
+		  </header>
+		  <div class="modal-body">
+		    <div class="row">
+	        	<div class="col-md-6 text-center">
+	        		<h5>coton tshirt</h5>
+	        		<h2><b>$11</b></h2>
+	        		<h5>
+	        			bncvb
+	        		</h5>
+	        		<div class="select_wrap">
+	        			<select name="size" id="input" >
+							<option value="s">s</option>
+							<option value="m">m</option>
+							<option value="l">l</option>
+							<option value="xl">xl</option>
+							<option value="xxl">xxl</option>
+						</select>
+	        			<select name="quantity" id="input" >
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+	        		</div>
+	        		<button type="button" class="btn btn-primary custom_btn">ADD TO CART</button>
+	        		<p><u>see product details</u></p>
+	        	</div>
+	        	<div class="col-md-6">
+	        		<img src="image/img_1.jpg" alt="">
+	        	</div>
+	        </div>
+		  </div>
+		</div>
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
- 		<script src=""></script>
+ 		<script type="text/javascript">
+ 			$(window).resize(function() {
+				  $("#myModal").css({
+				    top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+				  });
+				});
+ 			$(function(){
+				var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+				$('a[data-modal-id]').click(function(e) {
+					e.preventDefault();
+					$("body").append(appendthis);
+					$(".modal-overlay").fadeTo(500, 0.7);
+					//$(".js-modalbox").fadeIn(500);
+					var modalBox = $(this).attr('data-modal-id');
+					$('#'+modalBox).fadeIn($(this).data());
+				});  
+			  
+				$(".js-modal-close, .modal-overlay").click(function() {
+				  $(".modal-box, .modal-overlay").fadeOut(500, function() {
+				    $(".modal-overlay").remove();
+				  });
+				});
+			 
+				$(window).resize(function() {
+				  $(".modal-box").css({
+				    top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+				    left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+				  });
+				});
+			 
+				$(window).resize();
+			});
+ 		</script>
 	</body>
 </html>
